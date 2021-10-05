@@ -6,11 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
-   allowNewServer = false;
+  showSecert = false;
+  allowNewServer = false;
    serverCreationStatus = 'No server was created!';
    UserStatus = 'No User Name Update!';
    serverName = 'TestServer';
    userName = 'Lalit';
+   serverCreated = false;
+   servers = ['TestServer 1, TestServer 2'];
+   log = [];
   constructor() {
     setTimeout(() => this.allowNewServer = true,
      2000);
@@ -19,6 +23,8 @@ export class ServersComponent implements OnInit {
   ngOnInit() {
   }
   onCreateServer() {
+    this.serverCreated = true;
+    this.servers.push(this.serverName);
     this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
   }
   onUpdateServerName(event: InputEvent){
@@ -32,5 +38,10 @@ export class ServersComponent implements OnInit {
   // onUpdateUserName(event: InputEvent){
   //   this.userName = (event.target as HTMLInputElement).value;
   // }
+  onToggleDetails() {
+    this.showSecert = !this.showSecert;
+    // this.log.push(this.log.length + 1);
+    this.log.push(new Date());
 
+  }
 }
